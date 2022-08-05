@@ -1,0 +1,10 @@
+declare
+n integer := 20;
+s integer :=0;
+begin
+for i in 1..n loop
+s : = s + i;
+end loop;
+dbms_output.put_line(s);
+end;
+/sum
