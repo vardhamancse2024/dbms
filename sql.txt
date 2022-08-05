@@ -1,0 +1,223 @@
+Declare
+n1 integer;
+n2 integer;
+res integer;
+Begin
+n1 := &n1;
+n2 := &n2;
+res:= n1+n2;
+dbms_output.put_line('result'||res);
+end;
+/
+	========================================================================================
+	-----------------------------------------<=>--------------------------------------------
+	========================================================================================
+# using if statement find bigger one
+
+Declare
+n1 integer;
+n2 integer;
+res integer;
+Begin
+n1 := &n1;
+n2 := &n2;
+if(n1>n2)
+	dbms_output.put_line('n1 is bigger');
+else
+	dbms_output.put_line('n2 is bigger');
+end;
+/
+	========================================================================================
+	-----------------------------------------<=>--------------------------------------------
+	========================================================================================
+# 1 to n numbers
+
+declare
+i integer :=1;
+begin
+while (i<13) loop
+	dbms_output.put_line('1 to n numbers are'||i);
+i:=i+1;
+end loop;
+end;
+/
+	========================================================================================
+	-----------------------------------------<=>--------------------------------------------
+	========================================================================================
+# summ of num
+
+declare
+i int :=1;
+n int;
+s int:=0;
+begin
+n:=&n;
+for i in 1..n loop
+s:=s+i;
+end loop;
+dbms_output.put_line('1 to s sum numbers are  ='||s);
+end;
+/
+	========================================================================================
+	-----------------------------------------<=>--------------------------------------------
+	========================================================================================
+declare
+s varchar2(15);
+n1 int;
+begin
+s := &s;
+n1 := &n1;
+dbms_output.put_line('name ='||s);
+dbms_output.put_line('rollnumber '||n1);
+end;
+/
+	========================================================================================
+	-----------------------------------------<=>--------------------------------------------
+	========================================================================================
+
+declare
+s varchar2(15);
+n1 int;
+begin
+s := 'mani';
+n1 := &n1;
+dbms_output.put_line('name ='||s);
+dbms_output.put_line('rollnumber '||n1);
+end;
+/
+	========================================================================================
+	-----------------------------------------<=>--------------------------------------------
+	========================================================================================
+
+
+declare 
+e_no emp_514.CUSID%type;
+e_sal emp_514.CUSSAL%type;
+e_name emp_514.CUSTNAME%type;
+cursor c1 is
+select CUSID,CUSSAL,CUSTNAME from emp_514;
+begin
+open c1;
+loop
+fetch c1 into e_no,e_sal,e_name;
+exit when c1%notfound;
+dbms_output.put_line(e_no || ' '|| e_name ||' '|| e_sal);
+end loop;
+close c1;
+end;
+/ 
+
+
+
+select * from emp_514;
+	========================================================================================
+	-----------------------------------------<=>--------------------------------------------
+	========================================================================================
+DECLARE 
+	total_rows number(2);
+BEGIN
+	update emp_514
+	SET cussal = cussal + 500;
+	if sql%notfound THEN
+		dbms_output.put_line('customer is not selected');
+	elsif sql%found THEN
+		total_rows := sql%rowcount;
+		dbms_output.put_line(total_rows || 'cusomer is selected');
+		END if;
+END;
+/
+	========================================================================================
+	-----------------------------------------------------------------------------------<=>--
+	========================================================================================
+DECLARE 
+a num;
+b num;
+c num;
+procedure findmin (x in num,y in num,z out num)ls
+begin
+if x<y then
+z:=x;
+else 
+z:=y;
+end if;
+end findmin;
+begin
+a:=23;
+b:=45;
+findmin(a, b, c);
+dbms_output.put_line('minimumm of(23, 45):'||c);
+end;
+/
+
+
+DECLARE 
+a num;
+b num;
+c num;
+function findmax(x IN num,y IN num)
+return num
+is
+z num;
+begin
+if x>y then
+z:=x;
+else 
+z:=y;
+end if;
+return z;
+end;
+begin
+a:=23;
+b:=45;
+c:=findmax(a,b);
+dbms_output.put_line('minimumm of(23, 45):'||c);
+end;
+/
+
+
+oracle-database-connection-in-python
+link()
+https://www.geeksforgeeks.org/oracle-database-connection-in-python/
+
+#note pad using python .py file 
+import cx_Oracle
+try:
+    con = cx_Oracle.connect('system/system@localhost:1521/xe')
+    cursor = con.cursor()
+    cursor.execute("create table emp(empid integer primary key, name varchar2(30), salary number(10, 2))")
+ 
+    print("Table Created successfully")
+ 
+except cx_Oracle.DatabaseError as e:
+    print("There is a problem with Oracle", e)
+finally:
+    if cursor:
+        cursor.close()
+    if con:
+        con.close()
+        
+        
+        
+        
+import cx_Oracle
+try:
+	con=cx_Oracle.connect('system/system @ localhost:1521/xe')
+	print(con.version)
+	cursor=con.cursor()
+	cursor.execute('create table em(empid integer primary key,name varchar(20),sal real)')
+	print('table created sucessfully')
+	cursor.execute('insert into em values(1000,\'rahul\',50000.50)')
+	cursor.execute('insert into em values(1002,\'mani\',864.50)')
+	print("good")
+	con.commit()
+	
+	data=[[10007,'vikram',48000.0],[10008,'sunil',65000.1]]
+	cursor.executemany('insert into em values(:1,:2,:3)',data)
+except cx_Oracle.DatabaseError as e:
+	print("there is a problem with oracle",e)
+finally:
+	if cursor:
+		cursor.close()
+	if con:
+		con.close()
+	
