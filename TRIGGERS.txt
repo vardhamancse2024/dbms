@@ -1,0 +1,27 @@
+//) write a trigger program to display the salary of an employee before updation and after updation and also display the salary diff.
+
+create or replace trigger up
+after update on employ
+for each row
+declare
+diff int;
+begin
+diff := :new.salary - :old.salary;
+dbms_output.put_line('old salary '||:old.salary);
+dbms_output.put_line('new salary '||:new.salary);
+dbms_output.put_line('diff is '|| diff);
+end;
+/
+
+
+// Write a program to create trigger for inserting record to back_up table before deletion
+create or replace trigger del
+before delete on employ
+for each row
+declare
+begin
+insert into backup_emp values(:old.eno,:old.ename,:old.salary,:old.annual,:old.doj);
+end;
+/
+
+
