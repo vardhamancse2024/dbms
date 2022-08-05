@@ -1,0 +1,46 @@
+//write a cursor program to display all employee details.
+
+
+declare
+eno emp11.empno%type;
+name emp11.ename%type;
+salary emp11.sal%type;
+cursor display is select * from emp11;
+begin
+open display;
+loop
+fetch display into eno,name,salary;
+EXIT when(display%notfound);
+dbms_output.put_line(eno||name||salary);
+end loop;
+close display;
+end;
+/
+
+
+//Write a PL/SQL program to get the name and salary of employee whose eno is 501
+
+declare
+eno emp.empno%type;
+ename emp.empname%type;
+sal emp.salary%type;
+begin
+select empname,salary into ename,sal from emp where empno=501;
+Dbms_output.put_line('Employe name is:'||ename);
+Dbms_output.put_line('Employe salary is:'||sal);
+end;
+/
+
+// Write a cursor program to display no.of rows updated after executing update command for changing salary of employees to 10,000.
+declare
+count1 int;
+begin
+update emp11 set sal=10000;
+count1 := SQL%Rowcount;
+dbms_output.put_line(count1);
+end;
+/
+
+//
+
+
