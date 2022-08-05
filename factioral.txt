@@ -1,0 +1,38 @@
+declare
+a integer;
+b integer;
+res integer;
+res_fact integer;
+function smallest(a1 in integer,b1 in integer)
+return int
+is
+s integer;
+begin
+if(a1<b1) then
+s := a1;
+else
+s := b1;
+end if;
+return s;
+end smallest;
+function factorial(a1 in integer)
+return int
+is
+fact integer;
+begin
+if(a1=1) then
+fact :=1;
+else
+fact := a1*factorial(a1-1);
+end if;
+return fact;
+end factorial;
+begin
+a := &a;
+b := &b;
+res := smallest(a,b);
+res_fact := factorial(a);
+dbms_output.put_line(res);
+dbms_output.put_line(res_fact);
+end;
+/
