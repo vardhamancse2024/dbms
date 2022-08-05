@@ -14,3 +14,32 @@ else
 dbms_output.put_line('BIG IS '||c);
 end if;
 end;
+
+
+//Write a PL/SQL program to create stored procedure for finding biggest of 3 numbers.
+
+
+declare
+a integer;
+b integer;
+c integer;
+big integer;
+procedure big1(a1 in integer,b1 in integer,c1 in integer,bigger out integer)
+is
+begin
+if((a>b) and(a>c)) then
+bigger := a;
+elsif((b>a) and (b>c)) then
+bigger := b;
+else
+bigger := c;
+end if;
+end big1;
+begin
+a := &a;
+b := &b;
+c := &c;
+big1(a,b,c,big);
+dbms_output.put_line(big);
+end;
+/
