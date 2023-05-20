@@ -1,4 +1,4 @@
 # dbms.
 
 
-An Idiot with schedule' or '1'='1
+Fuck u B*tch
